@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kevin Balseca · Portafolio</title>
+  <meta name="description" content="Portafolio de Kevin Balseca, estudiante de Ingeniería de Software en la Universidad Técnica de Ambato.">
+  <link rel="icon" href="https://github.com/Balseca-Kevin.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --surface: #ffffff;
+      --text: #1d1f22;
+      --muted: #5b6168;
+      --line: #dedad1;
+      --accent: #1f6f5c;
+      --accent-soft: #e2efe9;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14171a;
+        --surface: #1c2024;
+        --text: #e8e6e1;
+        --muted: #9aa1a8;
+        --line: #2c3238;
+        --accent: #5cc4a6;
+        --accent-soft: #1d3330;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+    nav .brand { font-family: var(--mono); font-weight: 500; color: var(--text); text-decoration: none; }
+    nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; }
+    nav ul a { color: var(--muted); text-decoration: none; font-size: 15px; }
+    nav ul a:hover { color: var(--accent); }
+
+    header { padding: 64px 0 40px; }
+    .hero { display: grid; grid-template-columns: 168px 1fr; gap: 32px; align-items: center; }
+    .hero img {
+      width: 168px; height: 168px; object-fit: cover;
+      border-radius: 50%; border: 4px solid var(--surface);
+      box-shadow: 0 0 0 1px var(--line);
+      background: var(--line);
+    }
+    .tag { font-family: var(--mono); font-size: 13px; color: var(--accent); margin: 0 0 6px; }
+    h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0 0 12px; }
+    .lead { color: var(--muted); font-size: 18px; margin: 0 0 20px; max-width: 560px; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block; padding: 9px 16px; border-radius: 6px;
+      border: 1px solid var(--line); background: var(--surface);
+      color: var(--text); text-decoration: none; font-size: 15px;
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+    section { padding: 40px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 15px; font-family: var(--mono); font-weight: 500; color: var(--accent); margin: 0 0 20px; letter-spacing: .02em; }
+    p { margin: 0 0 14px; }
+
+    .now { display: grid; gap: 12px; }
+    .now div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+    .now strong { display: block; font-weight: 600; }
+    .now span { color: var(--muted); font-size: 15px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+      padding: 18px; display: flex; flex-direction: column;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 17px; }
+    .card p { color: var(--muted); font-size: 15px; flex: 1; }
+    .card .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .card .actions { display: flex; gap: 14px; font-size: 14px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-family: var(--mono); font-size: 13px;
+      background: var(--accent-soft); color: var(--text);
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .group { margin-bottom: 18px; }
+    .group p { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+
+    .stats { display: flex; flex-wrap: wrap; gap: 12px; }
+    .stats img { max-width: 100%; height: auto; }
+
+    ul.plain { margin: 0; padding-left: 20px; }
+    ul.plain li { margin-bottom: 6px; }
+
+    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 640px) {
+      nav ul { gap: 12px; }
+      nav ul li.hide-sm { display: none; }
+      header { padding: 40px 0 28px; }
+      .hero { grid-template-columns: 1fr; gap: 20px; }
+      .hero img { width: 128px; height: 128px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">balseca-kevin</a>
+    <ul>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li class="hide-sm"><a href="#tecnologias">Tecnologías</a></li>
+      <li class="hide-sm"><a href="#estadisticas">Estadísticas</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="wrap">
+  <div class="hero">
+    <!-- La foto se toma de assets/foto.jpg. Si no existe, se usa la foto de perfil de GitHub. -->
+    <img src="assets/foto.jpg" alt="Foto de Kevin Balseca"
+         onerror="this.onerror=null;this.src='https://github.com/Balseca-Kevin.png';">
+    <div>
+      <p class="tag">Ingeniería de Software · UTA · Ambato, Ecuador</p>
+      <h1>Kevin Balseca</h1>
+      <p class="lead">Estudiante de Ingeniería de Software en la Universidad Técnica de Ambato. Trabajo en backend, bases de datos relacionales y control de versiones con Git Flow.</p>
+      <div class="links">
+        <a class="btn primary" href="https://github.com/Balseca-Kevin">GitHub</a>
+        <a class="btn" href="#proyectos">Ver proyectos</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="sobre-mi">
+    <h2>// sobre mí</h2>
+    <p>Estudio en la Facultad de Ingeniería en Sistemas, Electrónica e Industrial (FISEI) de la UTA. En el período julio a diciembre de 2026 llevo Manejo y Configuración del Software, Metodologías Ágiles, Bases de Datos, Redes e Investigación Operativa.</p>
+    <p>En los proyectos de grupo me encargo de la integración y del repositorio: ramas <code>feature</code>, pull requests y revisión antes de fusionar a <code>develop</code>.</p>
+    <div class="now">
+      <div><strong>EduMonitor AI</strong><span>Analítica académica sobre Moodle con un agente de IA. Scrum Master, backend e integración con Moodle.</span></div>
+      <div><strong>Gran Continental</strong><span>Venta de pasajes de buses interprovinciales. Módulo de compra del cliente: inicio, búsqueda, pasajeros, resumen y "Mis viajes".</span></div>
+      <div><strong>RutaFlow</strong><span>Formulario de solicitudes de cambio (RFC) para el proyecto de buses.</span></div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <h2>// proyectos</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="meta">HTML · CSS · JavaScript</div>
+        <h3>RutaFlow</h3>
+        <p>Solicitudes de cambio con tres roles: pasajero, desarrollador y comité. El comité aprueba o rechaza con clasificación ITIL, planes de implementación y de reversión, y deja historial de trazabilidad.</p>
+        <div class="actions">
+          <a href="https://balseca-kevin.github.io/Rutaflow/">Demo</a>
+          <a href="https://github.com/Balseca-Kevin/Rutaflow">Código</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="meta">Proyecto de grupo</div>
+        <h3>Gran Continental</h3>
+        <p>Venta de pasajes de buses interprovinciales. Hice el módulo de compra del cliente.</p>
+        <div class="actions">
+          <a href="https://github.com/Aenkhell007/ProyectoTransporteBuses">Código</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="meta">Python</div>
+        <h3>mi_proyecto</h3>
+        <p>Aplicación separada en backend y frontend. 48 commits.</p>
+        <div class="actions">
+          <a href="https://github.com/Balseca-Kevin/mi_proyecto">Código</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="meta">Java</div>
+        <h3>CustomerManagementBST</h3>
+        <p>Gestión de clientes con árbol binario de búsqueda.</p>
+        <div class="actions">
+          <a href="https://github.com/Balseca-Kevin/CustomerManagementBST">Código</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="meta">JavaScript</div>
+        <h3>MarketKT-System</h3>
+        <p>Sistema de mercado.</p>
+        <div class="actions">
+          <a href="https://github.com/Balseca-Kevin/MarketKT-System">Código</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="meta">Investigación</div>
+        <h3>IoT con ESP32 y PIR</h3>
+        <p>Coautor de un artículo de revisión sobre detección de movimiento humano en tiempo real. Design Science Research y revisión sistemática con PRISMA 2020.</p>
+      </article>
+    </div>
+    <p style="margin-top:18px;color:var(--muted);font-size:15px">También hice algoritmos de grafos en Java (Dijkstra, BFS, DFS, PageRank), una aplicación web con PHP, MySQL y JavaScript bajo MVC, y el despliegue de WordPress con Docker, nginx-proxy y SSL en un VPS con dominio propio.</p>
+  </section>
+
+  <section id="tecnologias">
+    <h2>// tecnologías</h2>
+    <div class="group">
+      <p>Lenguajes</p>
+      <div class="chips"><span class="chip">Java</span><span class="chip">C#</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">HTML/CSS</span></div>
+    </div>
+    <div class="group">
+      <p>Bases de datos</p>
+      <div class="chips"><span class="chip">MySQL</span><span class="chip">MariaDB</span><span class="chip">PostgreSQL</span></div>
+    </div>
+    <div class="group">
+      <p>Herramientas</p>
+      <div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Git Flow</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">Ubuntu Server</span><span class="chip">VirtualBox</span><span class="chip">IntelliJ IDEA</span><span class="chip">VS Code</span><span class="chip">LaTeX</span></div>
+    </div>
+    <p style="color:var(--muted);font-size:15px">Idiomas: español nativo, inglés de lectura técnica.</p>
+  </section>
+
+  <section id="estadisticas">
+    <h2>// estadísticas de github</h2>
+    <div class="stats">
+      <img src="https://github-readme-stats.vercel.app/api?username=Balseca-Kevin&show_icons=true&include_all_commits=true&count_private=true&locale=es&hide_border=true" alt="Estadísticas de GitHub" loading="lazy">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Balseca-Kevin&layout=compact&locale=es&hide_border=true" alt="Lenguajes más usados" loading="lazy">
+      <img src="https://streak-stats.demolab.com?user=Balseca-Kevin&locale=es&hide_border=true" alt="Racha de contribuciones" loading="lazy">
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Kevin David Balseca Tumbaco · <a href="https://github.com/Balseca-Kevin">github.com/Balseca-Kevin</a> · Publicado con GitHub Pages
+  </div>
+</footer>
+
+</body>
+</html>
